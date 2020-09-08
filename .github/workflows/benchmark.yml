@@ -1,0 +1,11 @@
+name: Benchmark
+on:
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    name: benchmark binary insert vs sort
+    runs-on: ubuntu-latest
+    steps:
+      - id: build
+        run: npm run benchmark

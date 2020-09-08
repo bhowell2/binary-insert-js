@@ -1,0 +1,25 @@
+{
+  "name": "binary-insert",
+  "version": "1.0.0",
+  "files": ["dist/*"],
+  "author": {
+    "name": "bhowell2",
+    "url": "https://github.com/bhowell2"
+  },
+  "homepage": "https://github.com/bhowell2/binary-insert-js",
+  "main": "dist/binaryInsert.js",
+  "types": "dist/binaryInsert.d.ts",
+  "scripts": {
+    "benchmark": "npm run build && node --expose-gc --max-old-space-size=4096 benchmark.js",
+    "build": "rm -rf dist/ && tsc",
+    "clean": "rm -rf node_modules/ && rm -rf dist/",
+    "prepublish": "npm run build && rm -rf dist/test && mv dist/lib/* dist/ && rm -rf dist/lib",
+    "test": "npm run build && jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.5",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9.7"
+  }
+}
