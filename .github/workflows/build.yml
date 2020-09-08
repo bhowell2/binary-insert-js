@@ -1,37 +1,36 @@
-#name: Test push
-#
-#on:
-#  push:
-#
-## this is such a small project can do it all here
-## otherwise might want to require that
-#jobs:
-#  build_and_test:
-#    name: build and test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v2-beta
-#      - run: npm install
-#      # test runs build first, so can just test here and achieve the build
-#      - run: npm run test
-#
-#  # could create an entire different workflow, but would have to jump through more
-#  # hoops to ensure that the build/tests passed
-#  publish:
-#    name: publish on release
-#    needs: [build_and_test]
-#    # ensure that it is tagged -- only tagged commits are released
-#    if: startsWith(github.ref, 'refs/tags/v') && github.event_name == '
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v2-beta
-#      - run: npm install
-#      - run: npm build
-#      - uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          -
-#      - run: npm
+name: Test push
+
+on:
+  push:
+  release:
+    types: [published, edited]
+
+# this is such a small project can do it all here
+# otherwise might want to require that
+jobs:
+  build_and_test:
+    name: build and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+      - run: npm ci
+      # test runs build first, so can just test here and achieve the build
+      - run: npm run test
+
+  # could create an entire different workflow, but would have to jump through more
+  # hoops to ensure that the build/tests passed
+  publish:
+    if: github.event_name == 'release' && (github.event.action == 'published') &&
+      startsWith(github.ref, 'refs/tags/v')
+    name: publish on release
+    needs: [build_and_test]
+    # ensure that it is tagged -- only tagged commits are released
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+      - run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+      - run: npm ci
+      - run: npm build
+      - run: npm publish
