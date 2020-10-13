@@ -3,15 +3,17 @@ Simple function `binaryInsert(array, value, comparator)` that provides binary in
 array in javascript. This is mostly intended for larger arrays, and the performance gain may be viewed in the [benchmark](#benchmarks). 
 
 Binary insertion is `O(log(n))` while Javascript's `.sort()` (using quicksort or similar) is `O(n * log(n))`, while linear insertion is `O(n)`.
-When inserting a single value binary insertion *(in a sorted array)* is the clear winner; however 
-this breaks down when inserting multiple values because each time binary insertion is used it will have a cost of `O(log(n))`, which 
-will result in a cost of `O(n * log(n))`. At first glance this may appear to be the same as Javascript's sort implementation, but 
+When inserting a single value *(in a sorted array)* binary insertion is the clear winner; however this breaks down when 
+inserting multiple values (`a`) because each time binary insertion is used it will have a cost of `O(log(n))`, which 
+will result in a cost of `O(a * log(n))`. At first glance this may appear to be the same as Javascript's sort implementation, but 
 it has quite the performance difference when multiple values are inserted as can be viewed in the benchmarks below.
 
 If you're inserting into a large sorted list, but not necessarily all at once this can provide much higher performance 
 than sorting every time you add an element, or even when you add multiple values and then sort. However, if you're adding 
 quite a few values (especially on larger arrays) and then sorting after you will see better performance - refer to benchmarks to  see where this breaks 
 down in terms of number of insertions and array size.
+
+**Note, the array MUST be SORTED or the insert position will be nonsensical.**
 
 ## Example usage
 `npm install binary-insert`
@@ -27,8 +29,8 @@ binaryInsert(ary, 4, comparator); // this actually returns ary as well
 The benchmark results can be viewed below and a quick a snapshot of them is given in the tables here too. These were 
 done on a Macbook Pro with (Haswell) 2.3 GHz Quad-Core Intel Core i7. The benchmark action can also be run to obtain 
 similar results on whatever is powering the Github action workflows. The array values were the same for both binary 
-and insert-then-sort and the insertion values were randomly generated (but the same were used for both binary and 
-insert-then-sort insertions).
+and insert-then-sort and the insertion values were randomly generated (but the same values were used for both binary 
+and insert-then-sort insertions).
 
 #### Single value insert (averaged over 50 runs)
 | Array Size | Binary Insert (ms) | Insert then sort (ms) |
@@ -111,8 +113,8 @@ pushing a value will resize the array once, but not multiple times (well, unless
 So, when inserting multiple values the array is (usually) only resized once, so the resize penalty is not paid each time 
 like it is with Binary Insert (which uses splice to insert the element).
 
-So, when inserting multiple elements the cost for Binary Insert is `O(a * (log(n) + n))`.
+So, when inserting multiple elements (`a`) the cost for Binary Insert is `O(a * (log(n) + n))`.
 Yet, the cost for Insert-then-sort is still (roughly) the same at `O(n * log(n) + n)`.
 
-There is, of course, more going on than this reduction, but it should provide a pretty intuitive explanation for the 
-benchmark results.
+There is, of course, more going on than this reduction, as it doesn't perfectly explain the output, but it should 
+provide a pretty intuitive explanation for the benchmark results.
