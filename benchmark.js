@@ -1,8 +1,8 @@
-const {binaryInsert} = require("./dist/lib/binaryInsert");
+const {binaryInsert} = require("./dist/index");
 
 const {performance} = require('perf_hooks');
 
-const numberOfRuns = 50;
+const numberOfRuns = 1;
 
 const singleValueBenchmark = {binary: {}, insertThenSort: {}};
 

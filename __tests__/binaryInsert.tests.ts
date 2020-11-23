@@ -1,4 +1,4 @@
-import { binaryInsert } from "../lib/binaryInsert";
+import { binaryInsert } from "../index";
 
 function numberComparator(a: number, b: number): number {
   return a - b;

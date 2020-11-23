@@ -7,14 +7,14 @@
     "url": "https://github.com/bhowell2"
   },
   "homepage": "https://github.com/bhowell2/binary-insert-js",
-  "main": "dist/binaryInsert.js",
-  "types": "dist/binaryInsert.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "benchmark": "npm run build && node --expose-gc --max-old-space-size=4096 benchmark.js",
-    "build": "rm -rf dist/ && tsc",
-    "clean": "rm -rf node_modules/ && rm -rf dist/",
-    "prepublish": "npm run build && rm -rf dist/test && mv dist/lib/* dist/ && rm -rf dist/lib",
-    "test": "npm run build && jest"
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf dist/",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.5",
