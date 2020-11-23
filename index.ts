@@ -4,7 +4,7 @@
  * = 0 - should be returned when a == b
  * > 0 - should be returned when a > b
  */
-type Comparator<T> = (a: T, b: T) => number
+export type Comparator<T> = (a: T, b: T) => number
 
 /**
  * Takes in a __SORTED__ array and inserts the provided value into
