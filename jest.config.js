@@ -1,7 +1,5 @@
 module.exports = {
   verbose: true,
-  // preset: "ts-jest",
-  rootDir: "./dist/test",
-  testRegex: "(.*|(\\.|/)(test|spec))[^\\.d\\.]\\.[jt]sx?$",
+  preset: "ts-jest",
   silent: false
 }
