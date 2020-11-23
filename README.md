@@ -18,7 +18,10 @@ down in terms of number of insertions and array size.
 ## Example usage
 `npm install binary-insert`
 ```javascript
-import { binaryInsert } from "binaryInsert";
+import { binaryInsert } from "binary-insert";
+// or can do:
+const binaryInsert = require('binary-insert').binaryInsert;
+
 const ary = [1,2,3,5];
 const comparator = (a,b) => a - b;
 binaryInsert(ary, 4, comparator); // this actually returns ary as well
