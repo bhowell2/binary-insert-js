@@ -39,7 +39,7 @@ export function binaryInsert<T>(array: T[], insertValue: T, comparator: Comparat
       left = inPos;
     }
     // nothing has changed, must have found limits. insert between.
-    if (leftLast == left && rightLast == right) {
+    if (leftLast === left && rightLast === right) {
       break;
     }
     leftLast = left;
