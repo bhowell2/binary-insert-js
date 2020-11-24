@@ -1,6 +1,6 @@
 {
   "name": "binary-insert",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "files": [
     "dist/index.js",
     "dist/index.d.ts"
@@ -9,6 +9,7 @@
     "name": "bhowell2",
     "url": "https://github.com/bhowell2"
   },
+  "license": "MIT",
   "homepage": "https://github.com/bhowell2/binary-insert-js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
