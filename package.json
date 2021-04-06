@@ -1,6 +1,6 @@
 {
   "name": "binary-insert",
-  "version": "1.2.2",
+  "version": "1.2.1",
   "files": [
     "dist/index.js",
     "dist/index.d.ts"

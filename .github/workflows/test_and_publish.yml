@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
       - run: npm ci
       # test runs with ts-jest, which does not write the transpiled TS to a file,
       # so if the test runs successfully then will
@@ -28,7 +28,7 @@ jobs:
           # need to use PAT to trigger test/build if a push is done with auto-commit below
           # this ensures that the latest commit has passed status checks and can thus be merged
           token: ${{ secrets.PAT }}
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
       - run: npm ci
       # need to actually build the dist and if there are changes it will be committed
       # on top of the current commit. this ensures the github repository contains the
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
       - run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
       - run: npm ci
       - run: npm publish
