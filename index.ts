@@ -13,7 +13,7 @@ export type Comparator<T> = (a: T, b: T) => number
  * @param insertValue value to be added to the array
  * @param comparator function that helps determine where to insert the value (
  */
-export function binaryInsert<T>(array: T[], insertValue: T, comparator: Comparator<T>) {
+export function binaryInsert<T>(array: T[], insertValue: T, comparator: Comparator<T> = (a, b) => a < b ? -1 : 1) {
   /*
   * These two conditional statements are not required, but will avoid the
   * while loop below, potentially speeding up the insert by a decent amount.
